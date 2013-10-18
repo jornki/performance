@@ -27,12 +27,15 @@ In this example we have a page containing a bunch of images, also we are linking
 > By adding this script to the header section of the page no images will be downloaded until the scripts completes! 
 
 If we take a look at this in the Safari Web Inspector it shows up like in the image below. Since the script is placed in the header the parser stops, downloads it, parses it and executes it. The images doesn't even start to download before the script is complete. Bad all around! Now let's fix it!
+
 ![alt_text][jsblocking_bad]
+
 ### Fixing the download blocking problem
 This is the easy part, we simply move the script tag element to the bottom of the `<body>` element. This way the images can start to download _before_ the parser event finds the script element.
 > You should if possible always defer loading of scripts by adding them as the last element of the body tag.
 
 Now that we have made that tiny little change, let's once again take a look in the web inspector. Hey, that's better, the images now start to download before the script is done. Also, the page is rendered sooner. We are still using the same JavaScript file, so this was an easy fix. However, the script is still blocking painting of the images for too long.
+
 ![alt_text][jsblocking_better]
 
 ### Fixing the paint (UI thread) blocking
@@ -43,6 +46,7 @@ So, we can have the script wait for all the images to be painted and then execut
 Since main time consuming part of our script is not DOM manipulation, we can alter the _calculate prime numbers_ part of the script to run in a separate thread, or **worker** as it's known as in the [specification](http://dev.w3.org/html5/workers/). This does require some changes to the script and it does require a browser which supports workers. _Also note that you cannot perform DOM operations from a worker since this is not thread safe._
 
 Now that we have altered our script, let's once again test it in the web inspector. Now we see that the images are downloaded and presented without any blocking at all, also the script completes way way faster since it now can run in a separate thread.
+
 ![alt_text][jsblocking_best]
 
 ## Summary
