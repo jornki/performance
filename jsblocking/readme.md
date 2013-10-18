@@ -2,7 +2,7 @@
 These demos demonstrates two blocking issues which should be avoided when writing web-applications.
 ## Download blocking
 When the HTML parser finds a `<script>` reference all parsing stops. This is because a script can alter the actual content of the page, so the parser stops dead, fetches, parses and executes the script before parsing can continue. This means that if you have a script reference in the header of the page, this script will block the browser from drawing anything to the screen. Let's consider the following example:
-```javascript
+```html
 <!DOCTYPE html>
 <html>
 	<head>
