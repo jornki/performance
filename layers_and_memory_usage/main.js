@@ -46,6 +46,10 @@
 			}
 		},
 
+		/**
+		 * Handles when the crappy mode check box is clicked
+		 * @param e
+		 */
 		modeChangeHandler : function (e) {
 			this.useCrappyMode = e.target.checked;
 
@@ -56,10 +60,18 @@
 			}
 		},
 
+		/**
+		 * Handler for when the number of images slider moves
+		 * @param e
+		 */
 		numImagesChangedHandler : function (e) {
 			document.getElementById('numImagesLabel').innerHTML = e.currentTarget.value + " images";
 		},
 
+		/**
+		 * Handler for when the number of images slider is released
+		 * @param e
+		 */
 		numImagesUpdatedHandler : function (e) {
 			this.numImages = e.currentTarget.value;
 
@@ -70,10 +82,18 @@
 			}
 		},
 
+		/**
+		 * Handles events fired by the width slider
+		 * @param e
+		 */
 		widthImagesChangedHandler : function (e) {
 			document.getElementById('widthImagesLabel').innerHTML = e.currentTarget.value + " px";
 		},
 
+		/**
+		 * Handles events fired by the width slider (done)
+		 * @param e
+		 */
 		widthImagesUpdatedHandler : function (e) {
 
 			this.imgWidth = e.currentTarget.value;
@@ -85,8 +105,10 @@
 			}
 		},
 
-		// Creates the image grid array from scratch every time it's called.
-		// The correct way
+		/**
+		 * Creates the image grid array from scratch every time it's called.
+		 * The better way
+		 */
 		createImageGridWithNumImagesOfWidth : function () {
 
 			var frag = document.createDocumentFragment();
@@ -97,11 +119,10 @@
 			this.imgAr = [];
 			this.posAr = [];
 
-			//Clear out any old images
+			// Clear out any old images
 			var holder = document.getElementById('image-holder');
-			while (holder.hasChildNodes()) {
-				holder.removeChild(holder.firstChild);
-			}
+			// In one action
+			holder.innerHTML = '';
 
 			for (var i = 0; i < this.numImages; i++) {
 				var img = document.createElement('img');
@@ -133,8 +154,10 @@
 			document.getElementById('image-holder').appendChild(frag);
 		},
 
-		// Creates the image grid array from scratch every time it's called.
-		// The crappy way (do not do this!!)
+		/**
+		 * Creates the image grid array from scratch every time it's called.
+		 * The crappy way (do not do this!!)
+		 */
 		createImageGridWithNumImagesOfWidthCrappyEdition : function () {
 
 			var currentCol = 0, x = 0, y = 0;
@@ -142,13 +165,17 @@
 			this.imgAr = [];
 			this.posAr = [];
 
-			//Clear out any old images
+			// Clear out any old images
 			var holder = document.getElementById('image-holder');
+
+			// !We are removing one child at the time
+			// which is not necessary at all
 			while (holder.hasChildNodes()) {
 				holder.removeChild(holder.firstChild);
 			}
 
 			for (var i = 0; i < this.numImages; i++) {
+				// !We are calculating the max cols for each iteration, stupid
 				var maxImageCols = Math.floor(window.innerWidth / this.imgWidth);
 				var img = document.createElement('img');
 				img.width = this.imgWidth;
@@ -162,10 +189,14 @@
 					'y' : y
 				});
 
+				// !Using a 3D transform will create a separate layer
+				// and use more memory.
 				img.style.webkitTransform = "translate3d(" + x + "px," + y + "px,0)";
 
 				this.imgAr.push(img);
 
+				// !We are appending one element at a time.
+				// This causes many many paints.
 				document.getElementById('image-holder').appendChild(img);
 
 				if ((currentCol + 1) < maxImageCols) {
@@ -178,14 +209,17 @@
 			}
 		},
 
+		/**
+		 * Randomizes the positions of the images
+		 */
 		randomizePositions : function () {
-
 			//Randomize the position array
 			this.posAr = this.shuffleArray(this.posAr);
 
 			//Move all images
 			for (var i = 0; i < this.imgAr.length; i++) {
 				if (this.useCrappyMode) {
+					// !Again with the 3D transform, do we really need it?
 					this.imgAr[i].style.webkitTransform = "translate3d(" + this.posAr[i].x + "px," + this.posAr[i].y + "px,0)";
 				} else {
 					this.imgAr[i].style.webkitTransform = "translate(" + this.posAr[i].x + "px," + this.posAr[i].y + "px)";
@@ -193,6 +227,11 @@
 			}
 		},
 
+		/**
+		 * Shuffles an array, not important in this context
+		 * @param {Array} array The array to shuffle
+		 * @returns {Array} A shuffled array
+		 */
 		shuffleArray : function (array) {
 			var counter = array.length, temp, index;
 
