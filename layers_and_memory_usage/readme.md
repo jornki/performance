@@ -1,0 +1,2 @@
+# Paints, invalidation and memory usage
+This demo demonstrates several things such as layer memory usage when using the `translate3d`or `translateZ` hacks. The demo also covers the usage of document fragments and style invalidation.
