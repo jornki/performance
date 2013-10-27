@@ -1,10 +1,9 @@
 # Performance demos
-This repository contain several web-application and web page demos with regards to performance optimizations.
+This repository contain several web-application and web page demos with regards to performance optimizations. Navigate into the individual demos to read more and to get the code.
 
 ## Demos
 * [JavaScript download and UI thread blocking](jsblocking/)
 * [Memory usage and JS libraries](jslibraries/)
-* [Using Appcache](appcache/)
 * [Layers and memory usage](layers_and_memory_usage/)
 
 ## Quicktips
