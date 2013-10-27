@@ -8,4 +8,5 @@ This repository contain several web-application and web page demos with regards 
 
 ## Quicktips
 * Did you know that it is much more efficient to place a background image on the body tag than the typical wrapper tag?
-* Did you know that placing scrolling listeners on an element disables hardware accelerated scrolling? 
+* Did you know that placing scrolling listeners on an element disables hardware accelerated scrolling?
+* Setting the width and the height of an image allows the browser to calculate the metrics of the page way faster and helps avoid reflows.
