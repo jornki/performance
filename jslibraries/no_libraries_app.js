@@ -1,12 +1,12 @@
-(function() {
+(function () {
 	"use strict";
 	var App;
 
 	App = {
 
-		list: null,
+		list : null,
 
-		init: function() {
+		init : function () {
 			var actionButton = document.querySelector('.action-button');
 
 			this.list = document.querySelector('.wrapper > ul');
@@ -14,13 +14,13 @@
 			actionButton.addEventListener('click', this, false);
 		},
 
-		updateColor: function(e) {
+		updateColor : function (e) {
 			if (e.target.webkitMatchesSelector('li')) {
 				e.target.classList.add('colorize');
 			}
 		},
 
-		handleEvent: function(e) {
+		handleEvent : function (e) {
 			if (e.type === 'click') {
 				console.time('Reset');
 				var i, len = this.list.children.length;
