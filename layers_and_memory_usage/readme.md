@@ -75,7 +75,7 @@ Yep, one layer 250 kB of memory used. That is better! And the animation performa
 
 [imagegrid_demo]: ../_resources/imagegrid_demo.jpg "Demo"
 [imagegrid_paints_bad]: ../_resources/imagegrid_paints_bad.jpg "Paints"
-[imagegrid_paints_better]: ../_resources/imagegrid_paints_better.jpg 
+[imagegrid_paints_better]: ../_resources/imagegrid_paints_good.jpg 
 "Paints"
 [imagegrid_layers_bad]: ../_resources/imagegrid_layers_bad.jpg
 "Lots of layer = lots of memory usage"
